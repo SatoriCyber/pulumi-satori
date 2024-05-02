@@ -10,6 +10,10 @@ The Pulumi Satori provider is currently available as a package in javascript/typ
 
 * JavaScript/TypeScript: [`@satoricyber/pulumi-satori`](https://www.npmjs.com/package/@satoricyber/pulumi-satori)
 
+    ```bash
+    npm install @satoricyber/pulumi-satori
+    ```
+
 ## Setup
 
 To provision resources with the Pulumi Satori provider, you need a Satori `Account ID` & `Service Account ID` & `Service Account KEY` to allow Pulumi to authenticate to Satori. Satori Service Account can be created in the Satori Management console [`here`](https://app.satoricyber.com/account/user-management?tab=service-accounts) by users that as the appropriate permission.
