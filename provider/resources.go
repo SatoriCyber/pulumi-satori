@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package satori
 
 import (
 	"path"
@@ -25,21 +25,21 @@ import (
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 
 	// Replace this provider with the provider you are bridging.
-	xyz "github.com/iwahbe/terraform-provider-xyz/provider"
+	satori "github.com/satoricyber/terraform-provider-satori/satori"
 
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
+	"github.com/SatoriCyber/pulumi-satori/provider/pkg/version"
 )
 
 // all of the token components used below.
 const (
 	// This variable controls the default name of the package in the package
 	// registries for nodejs and python:
-	mainPkg = "xyz"
+	mainPkg = "satori"
 	// modules:
-	mainMod = "index" // the xyz module
+	mainMod = "index" // the satori module
 )
 
-//go:embed cmd/pulumi-resource-xyz/bridge-metadata.json
+//go:embed cmd/pulumi-resource-satori/bridge-metadata.json
 var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
@@ -78,17 +78,17 @@ func Provider() tfbridge.ProviderInfo {
 		//
 		//    - Replace `shimv2.NewProvider` with `pfbridge.ShimProvider`.
 		//
-		//    - In provider/cmd/pulumi-tfgen-xyz/main.go, replace the
+		//    - In provider/cmd/pulumi-tfgen-satori/main.go, replace the
 		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen" import with
 		//      "github.com/pulumi/pulumi-terraform-bridge/pf/tfgen". Remove the `version.Version`
 		//      argument to `tfgen.Main`.
 		//
-		//    - In provider/cmd/pulumi-resource-xyz/main.go, replace the
+		//    - In provider/cmd/pulumi-resource-satori/main.go, replace the
 		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge" import with
 		//      "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge". Replace the arguments to the
 		//      `tfbridge.Main` so it looks like this:
 		//
-		//      	tfbridge.Main(context.Background(), "xyz", xyz.Provider(),
+		//      	tfbridge.Main(context.Background(), "satori", satori.Provider(),
 		//			tfbridge.ProviderMetadata{PulumiSchema: pulumiSchema})
 		//
 		//   Detailed instructions can be found at
@@ -96,7 +96,7 @@ func Provider() tfbridge.ProviderInfo {
 		//   After that, you can proceed as normal.
 		//
 		// This is where you give the bridge a handle to the upstream terraform provider. SDKv2
-		// convention is to have a function at "github.com/iwahbe/terraform-provider-xyz/provider".New
+		// convention is to have a function at "github.com/iwahbe/terraform-provider-satori/provider".New
 		// which takes a version and produces a factory function. The provider you are bridging may
 		// not do that. You will need to find the function (generally called in upstream's main.go)
 		// that produces a:
@@ -106,49 +106,115 @@ func Provider() tfbridge.ProviderInfo {
 		// - "github.com/hashicorp/terraform-plugin-framework/provider".Provider (for plugin-framework)
 		//
 		//nolint:lll
-		P: shimv2.NewProvider(xyz.New(version.Version)()),
+		P: shimv2.NewProvider(satori.NewProvider(version.Version)),
 
-		Name:    "xyz",
+		Name:    "satori",
 		Version: version.Version,
 		// DisplayName is a way to be able to change the casing of the provider name when being
 		// displayed on the Pulumi registry
-		DisplayName: "",
+		DisplayName: "SatoriCyber",
 		// Change this to your personal name (or a company name) that you would like to be shown in
 		// the Pulumi Registry if this package is published there.
-		Publisher: "abc",
+		Publisher: "SatoriCyber",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "",
+		LogoURL: "https://avatars.githubusercontent.com/u/59790990?s=200&v=4",
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "",
-		Description:       "A Pulumi package for creating and managing xyz cloud resources.",
+		PluginDownloadURL: "https://github.com/SatoriCyber/pulumi-satori/releases/download/v${VERSION}",
+		Description:       "A Pulumi package for creating and managing satori cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{"abc", "xyz", "category/cloud"},
+		Keywords:   []string{"SatoriCyber", "satori", "category/utilities"},
 		License:    "Apache-2.0",
-		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/pulumi/pulumi-xyz",
+		Homepage:   "https://www.satoricyber.com",
+		Repository: "https://github.com/satoricyber/pulumi-satori",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this should
-		// match the TF provider module's require directive, not any replace directives.
-		GitHubOrg:    "",
+		// match the TF provider modules require directive, not any replace directives.
+		GitHubOrg:    "satoricyber",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config:       map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: tfbridge.MakeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
+		Config: map[string]*tfbridge.SchemaInfo{
+			"serviceAccount": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SATORI_SA"},
+				},
+			},
+			"serviceAccountKey": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SATORI_SA_KEY"},
+				},
+			},
+			"satoriAccount": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SATORI_ACCOUNT_ID"},
+				},
+			},
+			"url": {
+				Default: &tfbridge.DefaultInfo{
+					Value:   "https://app.satoricyber.com",
+					EnvVars: []string{"SATORI_URL"},
+				},
+			},
+			"verifyTls": {
+				Default: &tfbridge.DefaultInfo{
+					Value:   false,
+					EnvVars: []string{"SATORI_VERIFY_TLS"},
+				},
+			},
+		},
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"satori_access_rule": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "AccessRule"),
+			},
+			"satori_custom_taxonomy_category": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "CustomTaxonomyCategory"),
+			},
+			"satori_custom_taxonomy_classifier": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "CustomTaxonomyClassifier"),
+			},
+			"satori_dataset": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Dataset"),
+			},
+			"satori_datastore": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Datastore"),
+			},
+			"satori_directory_group": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "DirectoryGroup"),
+			},
+			"satori_masking_profile": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "MaskingProfile"),
+			},
+			"satori_request_access_rule": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "RequestAccessRule"),
+			},
+			"satori_security_policy": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "SecurityPolicy"),
+			},
+			"satori_self_service_access_rule": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "SelfServiceAccessRule"),
+			},
+			"satori_user_settings": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "UserSettings"),
+			},
+		},
+		DataSources: map[string]*tfbridge.DataSourceInfo{
+			"satori_dac_deployment_settings": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDacDeploymentSettings"),
+			},
+			"satori_data_access_controller": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDataAccessController"),
+			},
+			"satori_user": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getUser"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			PackageName: "@satoricyber/pulumi-satori",
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
@@ -159,6 +225,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Python: &tfbridge.PythonInfo{
+			PackageName: "satori_resources_config",
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
@@ -166,7 +233,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: path.Join(
-				"github.com/pulumi/pulumi-xyz/sdk/",
+				"github.com/SatoriCyber/pulumi-satori/sdk/",
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
@@ -174,6 +241,7 @@ func Provider() tfbridge.ProviderInfo {
 			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			RootNamespace: "Satoricyber",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
@@ -186,7 +254,7 @@ func Provider() tfbridge.ProviderInfo {
 	//
 	// You shouldn't need to override anything, but if you do, use the [tfbridge.ProviderInfo.Resources]
 	// and [tfbridge.ProviderInfo.DataSources].
-	prov.MustComputeTokens(tokens.SingleModule("xyz_", mainMod,
+	prov.MustComputeTokens(tokens.SingleModule("satori_", mainMod,
 		tokens.MakeStandard(mainPkg)))
 
 	prov.MustApplyAutoAliases()
