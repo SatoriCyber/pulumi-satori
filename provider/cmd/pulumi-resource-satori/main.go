@@ -17,9 +17,9 @@ package main
 import (
 	_ "embed"
 
+	satori "github.com/SatoriCyber/pulumi-satori/provider"
+	"github.com/SatoriCyber/pulumi-satori/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	xyz "github.com/pulumi/pulumi-xyz/provider"
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
 )
 
 //go:embed schema.json
@@ -27,5 +27,5 @@ var pulumiSchema []byte
 
 func main() {
 	// Modify the path to point to the new provider
-	tfbridge.Main("xyz", version.Version, xyz.Provider(), pulumiSchema)
+	tfbridge.Main("satori", version.Version, satori.Provider(), pulumiSchema)
 }

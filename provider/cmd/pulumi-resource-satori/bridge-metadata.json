@@ -1,0 +1,444 @@
+{
+    "auto-aliasing": {
+        "resources": {
+            "satori_access_rule": {
+                "current": "satori:index/accessRule:AccessRule",
+                "fields": {
+                    "identity": {
+                        "maxItemsOne": true
+                    },
+                    "security_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "satori_custom_taxonomy_category": {
+                "current": "satori:index/customTaxonomyCategory:CustomTaxonomyCategory"
+            },
+            "satori_custom_taxonomy_classifier": {
+                "current": "satori:index/customTaxonomyClassifier:CustomTaxonomyClassifier",
+                "fields": {
+                    "additional_satori_categories": {
+                        "maxItemsOne": false
+                    },
+                    "custom_config": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "satori_based_config": {
+                        "maxItemsOne": true
+                    },
+                    "scope": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "datasets": {
+                                    "maxItemsOne": false
+                                },
+                                "include_location": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "location": {
+                                                "maxItemsOne": true,
+                                                "elem": {
+                                                    "fields": {
+                                                        "athena_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "mongo_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "mysql_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "relational_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "s3_location": {
+                                                            "maxItemsOne": true
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "relational_location": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "satori_dataset": {
+                "current": "satori:index/dataset:Dataset",
+                "fields": {
+                    "access_control_settings": {
+                        "maxItemsOne": true
+                    },
+                    "custom_policy": {
+                        "maxItemsOne": true
+                    },
+                    "definition": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "approvers": {
+                                    "maxItemsOne": false
+                                },
+                                "exclude_location": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "location": {
+                                                "maxItemsOne": true,
+                                                "elem": {
+                                                    "fields": {
+                                                        "athena_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "mongo_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "mysql_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "relational_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "s3_location": {
+                                                            "maxItemsOne": true
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "relational_location": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "include_location": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "location": {
+                                                "maxItemsOne": true,
+                                                "elem": {
+                                                    "fields": {
+                                                        "athena_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "mongo_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "mysql_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "relational_location": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "s3_location": {
+                                                            "maxItemsOne": true
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "relational_location": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "owners": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "security_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "satori_datastore": {
+                "current": "satori:index/datastore:Datastore",
+                "fields": {
+                    "baseline_security_policy": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "exclusions": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "excluded_identities": {
+                                                "maxItemsOne": false
+                                            },
+                                            "excluded_query_patterns": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "unassociated_queries_category": {
+                                    "maxItemsOne": true
+                                },
+                                "unsupported_queries_category": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    },
+                    "datastore_settings": {
+                        "maxItemsOne": false
+                    },
+                    "network_policy": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "allowed_rules": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "ip_ranges": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "blocked_rules": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "ip_ranges": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "project_ids": {
+                        "maxItemsOne": false
+                    },
+                    "satori_auth_settings": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "credentials": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "satori_directory_group": {
+                "current": "satori:index/directoryGroup:DirectoryGroup",
+                "fields": {
+                    "member": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "satori_masking_profile": {
+                "current": "satori:index/maskingProfile:MaskingProfile",
+                "fields": {
+                    "condition": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "satori_request_access_rule": {
+                "current": "satori:index/requestAccessRule:RequestAccessRule",
+                "fields": {
+                    "approvers": {
+                        "maxItemsOne": false
+                    },
+                    "expire_in": {
+                        "maxItemsOne": true
+                    },
+                    "identity": {
+                        "maxItemsOne": true
+                    },
+                    "security_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "satori_security_policy": {
+                "current": "satori:index/securityPolicy:SecurityPolicy",
+                "fields": {
+                    "profile": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "masking": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "rule": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "action": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "criteria": {
+                                                            "maxItemsOne": true,
+                                                            "elem": {
+                                                                "fields": {
+                                                                    "identity": {
+                                                                        "maxItemsOne": true
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "row_level_security": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "mapping": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "defaults": {
+                                                            "maxItemsOne": true,
+                                                            "elem": {
+                                                                "fields": {
+                                                                    "value": {
+                                                                        "maxItemsOne": false
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "filter": {
+                                                            "maxItemsOne": true,
+                                                            "elem": {
+                                                                "fields": {
+                                                                    "criteria": {
+                                                                        "maxItemsOne": true,
+                                                                        "elem": {
+                                                                            "fields": {
+                                                                                "identity": {
+                                                                                    "maxItemsOne": true
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "values": {
+                                                                        "maxItemsOne": true,
+                                                                        "elem": {
+                                                                            "fields": {
+                                                                                "value": {
+                                                                                    "maxItemsOne": false
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "rule": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "filter": {
+                                                            "maxItemsOne": true,
+                                                            "elem": {
+                                                                "fields": {
+                                                                    "location": {
+                                                                        "maxItemsOne": false,
+                                                                        "elem": {
+                                                                            "fields": {
+                                                                                "athena_location": {
+                                                                                    "maxItemsOne": true
+                                                                                },
+                                                                                "mongo_location": {
+                                                                                    "maxItemsOne": true
+                                                                                },
+                                                                                "mysql_location": {
+                                                                                    "maxItemsOne": true
+                                                                                },
+                                                                                "relational_location": {
+                                                                                    "maxItemsOne": true
+                                                                                },
+                                                                                "s3_location": {
+                                                                                    "maxItemsOne": true
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "location_prefix": {
+                                                                        "maxItemsOne": false
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "satori_self_service_access_rule": {
+                "current": "satori:index/selfServiceAccessRule:SelfServiceAccessRule",
+                "fields": {
+                    "expire_in": {
+                        "maxItemsOne": true
+                    },
+                    "identity": {
+                        "maxItemsOne": true
+                    },
+                    "security_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "satori_user_settings": {
+                "current": "satori:index/userSettings:UserSettings"
+            }
+        },
+        "datasources": {
+            "satori_dac_deployment_settings": {
+                "current": "satori:index/getDacDeploymentSettings:getDacDeploymentSettings"
+            },
+            "satori_data_access_controller": {
+                "current": "satori:index/getDataAccessController:getDataAccessController",
+                "fields": {
+                    "ips": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "satori_user": {
+                "current": "satori:index/getUser:getUser"
+            }
+        }
+    },
+    "auto-settings": {}
+}
