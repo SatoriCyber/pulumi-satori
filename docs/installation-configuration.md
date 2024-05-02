@@ -27,4 +27,14 @@ Set the following environment variables:
     $ export SATORI_URL=satoriApiURL
     ```
 
-or pass them as configuration options to the provider.~~
+### Set Pulumi Config variables
+Configuring the configuration variables is available using each of these command lines.
+After each line a prompt will ask you to enter the value for the key.
+
+    ```
+    pulumi config set satori:serviceAccount
+    pulumi config set satori:serviceAccountKey
+    pulumi config set satori:satoriAccount
+    pulumi config set satori:url
+    pulumi config set satori:verifyTls
+    ```
