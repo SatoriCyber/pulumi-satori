@@ -1,7 +1,7 @@
-~~---
+---
 title: Satori Installation & Configuration
 meta_desc: Information on how to install the Satori provider.
-layout: installation
+layout: package
 ---
 
 ## Installation

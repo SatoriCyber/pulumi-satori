@@ -1,7 +1,7 @@
 ---
 title: SatoriCyber
 meta_desc: Provides an overview of the SatoriCyber Provider for Pulumi.
-layout: overview
+layout: package
 ---
 
 The Satori provider for Pulumi can be used to provision any of the satori resources available in [Satori](https://app.satoricyber.com).
